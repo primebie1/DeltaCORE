@@ -57,13 +57,13 @@ namespace DeltaCORE
 							if (userRoles.Contains(role.Id))
 							{
 								await Context.Guild.GetUser(Context.User.Id).RemoveRoleAsync(role);
-								await ReplyAsync("Removed " + role.Name + "!");
+								await ReplyAsync($"Removed {role.Name}!");
 
 							}
 							else
 							{
 								await Context.Guild.GetUser(Context.User.Id).AddRoleAsync(role);
-								await ReplyAsync("Added " + role.Name + "!");
+								await ReplyAsync($"Added {role.Name}!");
 							}
 					}
 				}

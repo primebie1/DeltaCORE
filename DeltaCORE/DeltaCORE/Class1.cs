@@ -92,7 +92,7 @@ namespace DeltaCORE
                 4 => "Squekh",
                 5 => "Squok",
                 6 => "smoll squek",
-                _ => "shit done fucked mate",
+                _ => "Error! Invalid switch case!",
             };
             await Context.Channel.SendMessageAsync(res);
         }
@@ -107,7 +107,7 @@ namespace DeltaCORE
             {
                 0 => choice1,
                 1 => choice2,
-                _ => "shit done fucked mate",
+                _ => "Error! Invalid switch case!",
             };
             await Context.Channel.SendMessageAsync("I Choose "+res);
         }
@@ -119,7 +119,7 @@ namespace DeltaCORE
             int length = choices.Length;
             Random r = new Random();
             int result = r.Next(0, length+1);
-            string res = "shit done fucked mate";
+            string res = "Error! Invalid switch case!";
             for (int i = 0; i <= length; i++)
             {
                 if (result == i)
@@ -178,7 +178,7 @@ namespace DeltaCORE
                 3 => "Lowod",
                 4 => "OnO",
                 5 => ":3",
-                _ => "shit done fucked mate",
+                _ => "Error! Invalid switch case!",
             };
             await Context.Channel.SendMessageAsync(res);
         }

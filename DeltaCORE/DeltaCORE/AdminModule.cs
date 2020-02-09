@@ -69,7 +69,7 @@ namespace DeltaCORE
 			foreach(SocketRole role in roles)
 			{
 				data.roles.Add(role.Id);
-				await ReplyAsync("Set Role " + role.Name + " to self-apply!");
+				await ReplyAsync($"Set Role {role.Name} to self-apply!");
 			}
 			await _dataserv.SaveGuildData(data);
 			
@@ -95,7 +95,7 @@ namespace DeltaCORE
 				if (data.roles.Contains(role.Id))
 				{
 					data.roles.Remove(role.Id);
-					await ReplyAsync("Unset Role " + role.Name + " from self-apply!");
+					await ReplyAsync($"Unset Role {role.Name} from self-apply!");
 				}
 			}
 			await _dataserv.SaveGuildData(data);
