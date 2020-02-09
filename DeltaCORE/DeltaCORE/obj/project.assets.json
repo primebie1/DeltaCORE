@@ -5226,11 +5226,11 @@
   "project": {
     "version": "1.0.2-alpha",
     "restore": {
-      "projectUniqueName": "C:\\Users\\harry\\OneDrive\\Personal Projects\\DeltaBot\\Dev\\DeltaCORE\\DeltaCORE\\DeltaCORE.csproj",
+      "projectUniqueName": "E:\\Devwork\\DeltaCORE\\DeltaCORE\\DeltaCORE\\DeltaCORE.csproj",
       "projectName": "DeltaCORE",
-      "projectPath": "C:\\Users\\harry\\OneDrive\\Personal Projects\\DeltaBot\\Dev\\DeltaCORE\\DeltaCORE\\DeltaCORE.csproj",
+      "projectPath": "E:\\Devwork\\DeltaCORE\\DeltaCORE\\DeltaCORE\\DeltaCORE.csproj",
       "packagesPath": "C:\\Users\\harry\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\harry\\OneDrive\\Personal Projects\\DeltaBot\\Dev\\DeltaCORE\\DeltaCORE\\obj\\",
+      "outputPath": "E:\\Devwork\\DeltaCORE\\DeltaCORE\\DeltaCORE\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\",
