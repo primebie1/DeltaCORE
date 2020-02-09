@@ -36,7 +36,7 @@ namespace DeltaCORE
 		{
 			SocketGuild guild = Context.Guild;
 
-			await ReplyAsync("```Name: " + guild.Name + "\n" + "ID: " + guild.Id + "\n" + "Owner: " + guild.Owner.Username + "\nUser Count: " + guild.MemberCount + "```");
+			await ReplyAsync($"```Name: {guild.Name}\nID: {guild.Id}\nOwner: {guild.Owner.Username}\nUser Count: {guild.MemberCount}```");
 		}
 
 		[Command("UserInfo")]
@@ -49,7 +49,7 @@ namespace DeltaCORE
 
 			var userout = userin ?? defuser;
 
-			await ReplyAsync("```Name: " + userout.Username + "\n" + "Guild Nickname: " + userout.Nickname + "\n" + "User ID: " + userout.Id + "\n" + "Bot?: " + userout.IsBot + "\n" + "Status: " + userout.Status + "\n" + "Joined At: " + userout.JoinedAt + "\n" + "```");
+			await ReplyAsync($"```Name: {userout.Username}  \nGuild Nickname: {userout.Nickname}\nUser ID: {userout.Id}\nBot?: {userout.IsBot}\nStatus: {userout.Status}\nJoined At: {userout.JoinedAt}```");
 		}
 
 		[Command("RoleInfo")]
@@ -58,18 +58,14 @@ namespace DeltaCORE
 		{
 			string outlist = "";
 			foreach (SocketGuildUser user in role.Members) { outlist += (user.Nickname + " (" + user.Username + "#" + user.Discriminator + ")" + "\n"); }
-			await ReplyAsync("Users with Role " + role.Name + "\n```" + outlist + "```");
+			await ReplyAsync($"Users with Role {role.Name} \n ```{outlist}```");
 		}
-		
+
 		[Command("BotInfo")]
 		[Summary("Displays info on bot")]
 		public async Task BotInfoAsync()
 		{
-
-			var vernum = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
-			var app = await Context.Client.GetApplicationInfoAsync();
-			await ReplyAsync("```\n" +
-@"           ____
+			string deltaLogo = @"           ____
           /    \
          /      \
         /  _     \
@@ -81,12 +77,10 @@ namespace DeltaCORE
   /  /           \     \
  /  /             \     \
 /  /_______________\     \
-\________________________/ DeltaCORE"+"\n"+
-"General Info:\n"+
-"Version "+vernum+"\n"+"Owned by "+ app.Owner+app.Owner.DiscriminatorValue+"\n"+"Built With Discord.NET version "+DiscordConfig.Version+"\n"+"Running on "+RuntimeInformation.FrameworkDescription+" "+RuntimeInformation.ProcessArchitecture+" On "+RuntimeInformation.OSDescription+" "+RuntimeInformation.OSArchitecture+"\n"+
-"Stats: \n"+
-"Heap Size: "+GetHeapSize()+"MiB\n"+"Guilds Connected: "+Context.Client.Guilds.Count+"\n"+"Channels: "+Context.Client.Guilds.Sum(g=>g.Channels.Count)+"\n"+"Users: "+Context.Client.Guilds.Sum(g=>g.Users.Count)+"\n"+"Uptime: "+GetUptime()+"\n"+
-"\n```");
+\________________________/";
+			var vernum = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+			var app = await Context.Client.GetApplicationInfoAsync();
+			await ReplyAsync($"```\n{deltaLogo} DeltaCORE\nGeneral Info:\nVersion {vernum}\nOwned by {app.Owner}\nBuilt With Discord.NET version {DiscordConfig.Version}\nRunning on {RuntimeInformation.FrameworkDescription} {RuntimeInformation.ProcessArchitecture} On {RuntimeInformation.OSDescription} {RuntimeInformation.OSArchitecture}\n\nStats: \nHeap Size: {GetHeapSize()}MiB\nGuilds Connected: {Context.Client.Guilds.Count}\nChannels: {Context.Client.Guilds.Sum(g=>g.Channels.Count)}\nUsers: {Context.Client.Guilds.Sum(g=>g.Users.Count)}\nUptime: {GetUptime()}\n```");
 		}
 		private static string GetHeapSize() => Math.Round(GC.GetTotalMemory(true) / (1024.0 * 1024.0), 2).ToString();
 		private static string GetUptime() => (DateTime.Now - Process.GetCurrentProcess().StartTime).ToString(@"dd\.hh\:mm\:ss");

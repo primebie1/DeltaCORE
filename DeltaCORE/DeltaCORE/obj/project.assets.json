@@ -5224,7 +5224,7 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
-    "version": "1.0.2-alpha",
+    "version": "1.0.2-alpha-02",
     "restore": {
       "projectUniqueName": "E:\\Devwork\\DeltaCORE\\DeltaCORE\\DeltaCORE\\DeltaCORE.csproj",
       "projectName": "DeltaCORE",
