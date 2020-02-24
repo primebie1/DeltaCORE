@@ -101,5 +101,17 @@ namespace DeltaCORE
 			await _dataserv.SaveGuildData(data);
 			
 		}
+
+		[Command("RoleAdd")]
+		[Summary("Create a new role")]
+		public async Task RoleAddAsync(string name)
+		{
+
+			await Context.Guild.CreateRoleAsync(name);
+			await ReplyAsync($"Role {name} Created!");
+			
+		}
+
+
 	}
 }

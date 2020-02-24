@@ -31,13 +31,14 @@ namespace DeltaCORE
 	{
 		private readonly string guildFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\DeltaCORE\Guild\";
 		private readonly string userFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\DeltaCORE\User\";
-		private readonly string mediaFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\DeltaCORE\Media";
+		private readonly string mediaFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\DeltaCORE\Media\";
 		readonly JsonSerializerOptions options = new JsonSerializerOptions
 		{
 			WriteIndented = true // write pretty json
 			
+			
 		};
-
+		
 		public bool CheckFile(string name)
 		{
 			return (File.Exists(guildFolder + name + ".json") || File.Exists(userFolder + name+".json") || File.Exists(mediaFolder + name));
@@ -66,6 +67,11 @@ namespace DeltaCORE
 
 			return JsonSerializer.Deserialize<GuildData>(jsonReadString);
 
+		}
+
+		public Stream LoadMediaData(string name)
+		{
+			return File.Open(mediaFolder + name, FileMode.Open);
 		}
 	}
 	public class GuildData

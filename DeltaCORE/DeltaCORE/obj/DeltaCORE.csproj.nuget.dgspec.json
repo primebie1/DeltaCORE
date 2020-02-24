@@ -5,7 +5,7 @@
   },
   "projects": {
     "E:\\Devwork\\DeltaCORE\\DeltaCORE\\DeltaCORE\\DeltaCORE.csproj": {
-      "version": "1.0.2-alpha-02",
+      "version": "1.0.2-alpha-07",
       "restore": {
         "projectUniqueName": "E:\\Devwork\\DeltaCORE\\DeltaCORE\\DeltaCORE\\DeltaCORE.csproj",
         "projectName": "DeltaCORE",
@@ -47,11 +47,9 @@
               "target": "Package",
               "version": "[2.1.1, )"
             },
-            "Microsoft.CodeAnalysis.FxCopAnalyzers": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
+            "Humanizer": {
               "target": "Package",
-              "version": "[2.9.8, )"
+              "version": "[2.7.9, )"
             }
           },
           "imports": [

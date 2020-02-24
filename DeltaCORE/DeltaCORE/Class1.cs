@@ -109,7 +109,7 @@ namespace DeltaCORE
                 1 => choice2,
                 _ => "Error! Invalid switch case!",
             };
-            await Context.Channel.SendMessageAsync("I Choose "+res);
+            await Context.Channel.SendMessageAsync($"I Choose {res}!");
         }
 
         [Command("Choose")]
@@ -142,7 +142,7 @@ namespace DeltaCORE
                     break;
             }
             */
-            await Context.Channel.SendMessageAsync("I Choose " + res);
+            await Context.Channel.SendMessageAsync($"I Choose {res}!");
         }
         [Command("Boop")]
         [Summary("Boop!")]
@@ -161,7 +161,7 @@ namespace DeltaCORE
 
 			var userout = userin ?? defuser;
 
-			await ReplyAsync("*Hugs "+userout.Nickname+"!*");
+			await ReplyAsync($"*Hugs {userout.Nickname}!*");
 		}
     
         [Command("OwO")]
