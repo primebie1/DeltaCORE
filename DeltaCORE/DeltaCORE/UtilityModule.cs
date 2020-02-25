@@ -47,7 +47,7 @@ namespace DeltaCORE
 
 			if (_dataserv.CheckFile(servID))
 			{
-				GuildData data = new GuildData();
+				GuildData data;
 				data = _dataserv.LoadGuildData(servID);
 				foreach(ulong roleID in data.roles)
 				{

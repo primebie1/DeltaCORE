@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Reflection;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -78,7 +79,7 @@ namespace DeltaCORE
  /  /             \     \
 /  /_______________\     \
 \________________________/";
-			var vernum = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+			var vernum = Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion;
 			var app = await Context.Client.GetApplicationInfoAsync();
 			await ReplyAsync($"```\n{deltaLogo} DeltaCORE\n\n/========General Info========\\ \nVersion {vernum}\nOwned by {app.Owner}\nBuilt With Discord.NET version {DiscordConfig.Version}\nRunning on {RuntimeInformation.FrameworkDescription} {RuntimeInformation.ProcessArchitecture} On {RuntimeInformation.OSDescription} {RuntimeInformation.OSArchitecture}\n\n/========Stats========\\ \nHeap Size: {GetHeapSize()}MiB\nGuilds Connected: {Context.Client.Guilds.Count}\nChannels: {Context.Client.Guilds.Sum(g=>g.Channels.Count)}\nUsers: {Context.Client.Guilds.Sum(g=>g.Users.Count)}\nUptime: {GetUptime()}\n```");
 		}

@@ -16,7 +16,9 @@ using Discord.Rest;
 using Discord.Webhook;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection; 
+using System.Runtime.InteropServices;
+
 /*
            ____
           /    \
@@ -35,6 +37,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace DeltaCORE
 {
+
     class Program
     {
         public static void Main()
@@ -171,11 +174,8 @@ namespace DeltaCORE
 
             // Create a number to track where the prefix ends and the command begins
             int pos = 0;
-            // Replace the '!' with whatever character
-            // you want to prefix your commands with.
-            // Uncomment the second half if you also want
-            // commands to be invoked by mentioning the bot instead.
-            if (msg.HasCharPrefix(config.prefix, ref pos) /* || msg.HasMentionPrefix(_client.CurrentUser, ref pos) */)
+            //check for prefix
+            if (msg.HasCharPrefix(config.prefix, ref pos))
             {
                 // Create a Command Context.
                 var context = new SocketCommandContext(_client, msg);
@@ -235,7 +235,7 @@ namespace DeltaCORE
 			Console.WriteLine(@" /  /             \     \");
 			Console.Write(    @"/  /_______________\     \");
 			Console.ForegroundColor = ConsoleColor.Gray;
-			Console.WriteLine(" DeltaCORE V"+typeof(Program).Assembly.GetName().Version);
+			Console.WriteLine($" DeltaCORE V{ Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion}");
 			Console.ForegroundColor = ConsoleColor.DarkGreen;
 			Console.Write(    @"\________________________/");
 			Console.ForegroundColor = ConsoleColor.Gray;
@@ -244,4 +244,16 @@ namespace DeltaCORE
 		}
 
 	}
+    public static class OperatingSystem
+    {
+        public static bool IsWindows() =>
+            RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
+
+        public static bool IsMacOS() =>
+            RuntimeInformation.IsOSPlatform(OSPlatform.OSX);
+
+        public static bool IsLinux() =>
+            RuntimeInformation.IsOSPlatform(OSPlatform.Linux);
+    }
+
 }

@@ -3,14 +3,14 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <Version>1.0.2-alpha-07</Version>
+    <Version>1.0.2-alpha-09</Version>
     <Authors>Harri Cound</Authors>
     <Copyright>Harri Cound 2019-2020</Copyright>
     <SignAssembly>false</SignAssembly>
     <Description>A .NET Core and Discord.NET based Discord bot</Description>
     <NeutralLanguage></NeutralLanguage>
-    <AssemblyVersion>1.0.20052.1545</AssemblyVersion>
-    <FileVersion>1.0.20052.1545</FileVersion>
+    <AssemblyVersion>1.0.20056.0100</AssemblyVersion>
+    <FileVersion>1.0.20056.0100</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

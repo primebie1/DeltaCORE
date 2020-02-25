@@ -75,6 +75,7 @@ namespace DeltaCORE
             
             //string outpt = Convert.ToString(result);
             await Context.Channel.SendMessageAsync(outpt);
+
         }
 
         [Command("s")]

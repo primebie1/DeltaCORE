@@ -37,7 +37,7 @@ namespace DeltaCORE
 				return;
 			}
 
-			var audioClient = await channel.ConnectAsync();
+			await channel.ConnectAsync();
 		}
 		[Command("Disconnect", RunMode = RunMode.Async)]
 		[Summary("Disconnects from current voice channel")]

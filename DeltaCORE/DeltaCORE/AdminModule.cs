@@ -28,12 +28,10 @@ namespace DeltaCORE
 	{
 
 		private readonly DataService _dataserv;
-		private readonly CommandService _comserv;
 
-		public AdminModule(DataService dataserv,CommandService comserv)
+		public AdminModule(DataService dataserv)
 		{
 			_dataserv = dataserv;
-			_comserv = comserv;
 		}
 
 		[Command("Kick")]
@@ -71,7 +69,7 @@ namespace DeltaCORE
 				data.roles.Add(role.Id);
 				await ReplyAsync($"Set Role {role.Name} to self-apply!");
 			}
-			await _dataserv.SaveGuildData(data);
+			_dataserv.SaveGuildData(data);
 			
 		}
 		[Command("RoleUnset")]
@@ -98,7 +96,7 @@ namespace DeltaCORE
 					await ReplyAsync($"Unset Role {role.Name} from self-apply!");
 				}
 			}
-			await _dataserv.SaveGuildData(data);
+			_dataserv.SaveGuildData(data);
 			
 		}
 

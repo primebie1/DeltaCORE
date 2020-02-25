@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using System.Text;
 using System.IO;
 using System.Text.Json;
+using System.Runtime;
+using System.Runtime.InteropServices;
 using System.Text.Json.Serialization;
 using Discord.Commands;
 using Discord;
@@ -29,15 +31,23 @@ namespace DeltaCORE
 {
 	public class DataService
 	{
-		private readonly string guildFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\DeltaCORE\Guild\";
-		private readonly string userFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\DeltaCORE\User\";
-		private readonly string mediaFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\DeltaCORE\Media\";
-		readonly JsonSerializerOptions options = new JsonSerializerOptions
+		readonly string guildFolder;
+		readonly string userFolder;
+		readonly string mediaFolder;
+		readonly string rootFolder;
+		readonly JsonSerializerOptions options;
+
+		public DataService()
 		{
-			WriteIndented = true // write pretty json
-			
-			
-		};
+			rootFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+			guildFolder = rootFolder + @"\DeltaCORE\Guild\";
+			userFolder = rootFolder + @"\DeltaCORE\User\";
+			mediaFolder = rootFolder + @"\DeltaCORE\Media\";
+			options = new JsonSerializerOptions
+			{
+				WriteIndented = true // write pretty json
+			};
+		}
 		
 		public bool CheckFile(string name)
 		{
@@ -53,12 +63,12 @@ namespace DeltaCORE
 		}
 
 		//save given GuildData to "DeltaCORE\Guild\" in its JSON file
-		public async Task SaveGuildData(GuildData data)
+		public void SaveGuildData(GuildData data)
 		{
 			//Console.WriteLine(data.name + " " + data.roles);
 			string jsonSavString = JsonSerializer.Serialize(data, options);
 			//Console.WriteLine(jsonSavString);
-			File.WriteAllText(guildFolder + data.name + ".json", jsonSavString);			
+			File.WriteAllText(guildFolder + data.name + ".json", jsonSavString);
 		}
 		//load guild data from its JSON file in "DeltaCORE\Guild\"
 		public GuildData LoadGuildData(string name)
