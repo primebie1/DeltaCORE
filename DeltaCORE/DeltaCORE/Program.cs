@@ -143,7 +143,11 @@ namespace DeltaCORE
             var map = new ServiceCollection()
                 // Repeat this for all the service classes
                 // and other dependencies that your commands might need.
-                .AddSingleton(new CommandService()).AddSingleton(new DataService());
+                .AddSingleton(new CommandService())
+                .AddSingleton(new DataService())
+                .AddSingleton(new AudioService())
+                .AddSingleton(new DECTalkService())
+                .AddSingleton(new YoutubeService());
 	
 
             // When all your required services are in the collection, build the container.
