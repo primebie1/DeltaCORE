@@ -3,21 +3,50 @@ using System.Diagnostics;
 using System.IO;
 using System.Collections.Generic;
 using System.Text;
+using Discord;
+/*
+		   ____
+		  /    \
+		 /      \
+		/  _     \
+	   /  / \     \
+	  /  /   \     \
+	 /  /     \     \
+	/  /       \     \
+   /  /         \     \
+  /  /           \     \
+ /  /             \     \
+/  /_______________\     \ DeltaCORE
+\________________________/ DECTalk Text To Speech Service
+ */
 
 namespace DeltaCORE
 {
-	public class DECTalkService
+	public class DECTalkService : IDECTalkService
 	{
 
-		readonly string DECFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\DeltaCORE\DECTalk\";
+		readonly string DECFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/DeltaCORE/DECTalk/";
 
 		public bool DECInstalled()
 		{
-			return (File.Exists($"{DECFolder}say.exe"));
+
+			if (File.Exists($"{DECFolder}say.exe"))
+			{
+				return true;
+			}
+			else
+			{
+				LogMessage msg = new LogMessage(LogSeverity.Warning, "DECTalkServ", "DECTalk not found!");
+				Program.Log(msg);
+				return false;
+			}
+
 		}
 
 		public string DECGenWav(string ID, string input)
 		{
+			LogMessage msg = new LogMessage(LogSeverity.Verbose, "DECTalkServ", "DECTalk Generating Speech for " + ID);
+			Program.Log(msg);
 			//Console.WriteLine($"{DECFolder}{ID}.wav");
 			//Console.WriteLine($"{DECFolder}say.exe");
 			using (Process DECProcess = new Process())
@@ -27,14 +56,13 @@ namespace DeltaCORE
 				DECProcess.StartInfo.FileName = $"{DECFolder}say.exe";
 				DECProcess.StartInfo.Arguments = $" -w {ID}.wav {input}";
 				DECProcess.StartInfo.CreateNoWindow = true;
-			
+
 				DECProcess.Start();
 				//Console.WriteLine($"{DECProcess.StartInfo.FileName}{DECProcess.StartInfo.Arguments}");
-				DECProcess.WaitForExit(); 
-				
+				DECProcess.WaitForExit();
 			}
 			return $"{DECFolder}{ID}.wav";
-		} 
+		}
 
 
 	}

@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 /*
-           ____
-          /    \
-         /      \
-        /  _     \
-       /  / \     \
-      /  /   \     \
-     /  /     \     \
-    /  /       \     \
+		   ____
+		  /    \
+		 /      \
+		/  _     \
+	   /  / \     \
+	  /  /   \     \
+	 /  /     \     \
+	/  /       \     \
    /  /         \     \
   /  /           \     \
  /  /             \     \
@@ -20,8 +20,8 @@ namespace DeltaCORE
 {
 	public class DeltaData
 	{
-		public string token { get; set; }
-		public char prefix { get; set; }
+		public string Token { get; set; }
+		public char Prefix { get; set; }
 	}
 
 }

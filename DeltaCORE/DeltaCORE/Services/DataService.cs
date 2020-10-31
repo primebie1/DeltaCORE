@@ -29,34 +29,37 @@ using Discord.WebSocket;
  */
 namespace DeltaCORE
 {
-	public class DataService
+	public class DataService : IDataService
 	{
 		readonly string guildFolder;
 		readonly string userFolder;
-		readonly public string mediaFolder;
+		readonly string mediaFolder;
 		readonly string rootFolder;
 		readonly JsonSerializerOptions options;
 
 		public DataService()
 		{
 			rootFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-			guildFolder = rootFolder + @"\DeltaCORE\Guild\";
-			userFolder = rootFolder + @"\DeltaCORE\User\";
-			mediaFolder = rootFolder + @"\DeltaCORE\Media\";
+			guildFolder = rootFolder + "/DeltaCORE/Guild/";
+			userFolder = rootFolder + "/DeltaCORE/User/";
+			mediaFolder = rootFolder + "/DeltaCORE/Media/";
 			options = new JsonSerializerOptions
 			{
 				WriteIndented = true // write pretty json
 			};
 		}
-		
+		public string GetMediaFolder()
+		{
+			return mediaFolder;
+		}
 		public bool CheckFile(string name)
 		{
-			return (File.Exists(guildFolder + name + ".json") || File.Exists(userFolder + name+".json") || File.Exists(mediaFolder + name));
+			return (File.Exists(guildFolder + name + ".json") || File.Exists(userFolder + name + ".json") || File.Exists(mediaFolder + name));
 		}
 		public void MakeGuildFile(string name)
 		{
 			File.Create(guildFolder + name + ".json").Close();
-		}		
+		}
 		public void MakeUserFile(string name)
 		{
 			File.Create(userFolder + name + ".json").Close();
@@ -68,7 +71,7 @@ namespace DeltaCORE
 			//Console.WriteLine(data.name + " " + data.roles);
 			string jsonSavString = JsonSerializer.Serialize(data, options);
 			//Console.WriteLine(jsonSavString);
-			File.WriteAllText(guildFolder + data.name + ".json", jsonSavString);
+			File.WriteAllText(guildFolder + data.Name + ".json", jsonSavString);
 		}
 		//load guild data from its JSON file in "DeltaCORE\Guild\"
 		public GuildData LoadGuildData(string name)
@@ -90,8 +93,8 @@ namespace DeltaCORE
 	}
 	public class GuildData
 	{
-		public string name { get; set; }
-		public List<ulong> roles { get; set; } = new List<ulong>();
+		public string Name { get; set; }
+		public List<ulong> Roles { get; set; } = new List<ulong>();
 
 	}
 }

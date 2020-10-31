@@ -1,21 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Devwork\\DeltaCORE\\DeltaCORE\\DeltaCORE\\DeltaCORE.csproj": {}
+    "D:\\Devwork\\DeltaCORE\\DeltaCORE\\DeltaCORE\\DeltaCORE.csproj": {}
   },
   "projects": {
-    "E:\\Devwork\\DeltaCORE\\DeltaCORE\\DeltaCORE\\DeltaCORE.csproj": {
-      "version": "1.0.2-alpha-54",
+    "D:\\Devwork\\DeltaCORE\\DeltaCORE\\DeltaCORE\\DeltaCORE.csproj": {
+      "version": "1.0.3",
       "restore": {
-        "projectUniqueName": "E:\\Devwork\\DeltaCORE\\DeltaCORE\\DeltaCORE\\DeltaCORE.csproj",
+        "projectUniqueName": "D:\\Devwork\\DeltaCORE\\DeltaCORE\\DeltaCORE\\DeltaCORE.csproj",
         "projectName": "DeltaCORE",
-        "projectPath": "E:\\Devwork\\DeltaCORE\\DeltaCORE\\DeltaCORE\\DeltaCORE.csproj",
+        "projectPath": "D:\\Devwork\\DeltaCORE\\DeltaCORE\\DeltaCORE\\DeltaCORE.csproj",
         "packagesPath": "C:\\Users\\harry\\.nuget\\packages\\",
-        "outputPath": "E:\\Devwork\\DeltaCORE\\DeltaCORE\\DeltaCORE\\obj\\",
+        "outputPath": "D:\\Devwork\\DeltaCORE\\DeltaCORE\\DeltaCORE\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
           "C:\\Users\\harry\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -43,17 +42,25 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "DeltaPackage": {
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
             "Discord.Net": {
               "target": "Package",
-              "version": "[2.1.1, )"
+              "version": "[2.2.0, )"
             },
             "Humanizer": {
               "target": "Package",
-              "version": "[2.7.9, )"
+              "version": "[2.8.26, )"
+            },
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[3.1.9, )"
             },
             "VideoLibrary": {
               "target": "Package",
-              "version": "[3.0.0, )"
+              "version": "[3.0.6, )"
             }
           },
           "imports": [
@@ -71,7 +78,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
         }
       }
     }

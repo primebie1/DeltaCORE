@@ -6,7 +6,7 @@ using VideoLibrary;
 
 namespace DeltaCORE
 {
-	public class YoutubeService
+	public class YoutubeService : IYoutubeService
 	{
 
 		readonly string MediaFolder = $@"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\DeltaCORE\Media\";
