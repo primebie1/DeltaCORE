@@ -79,10 +79,10 @@ namespace DeltaCORE
 				// Repeat this for all the service classes
 				// and other dependencies that commands might need.
 				.AddSingleton(new CommandService())
-				.AddSingleton((IDataService)new DataService())
-				.AddSingleton((IAudioService)new AudioService())
-				.AddSingleton((IDECTalkService)new DECTalkService())
-				.AddSingleton((IYoutubeService)new YoutubeService());
+				.AddSingleton((DeltaPackage.Services.IDataService)new DataService())
+				.AddSingleton((DeltaPackage.Services.IAudioService)new AudioService())
+				.AddSingleton((DeltaPackage.Services.IDECTalkService)new DECTalkService())
+				.AddSingleton((DeltaPackage.Services.IYoutubeService)new YoutubeService());
 
 			return map.BuildServiceProvider();
 		}

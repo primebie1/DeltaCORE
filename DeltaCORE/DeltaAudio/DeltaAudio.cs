@@ -20,7 +20,7 @@ using System.Threading.Tasks;
  */
 namespace DeltaAudio
 {
-	class DeltaAudio : DeltaSocketModule
+	public class DeltaAudio : DeltaSocketModule
 	{
 
 		private readonly IAudioService _audserv;

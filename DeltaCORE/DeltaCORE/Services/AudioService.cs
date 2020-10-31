@@ -24,7 +24,7 @@ using Discord;
 
 namespace DeltaCORE
 {
-	public class AudioService : IAudioService
+	public class AudioService : DeltaPackage.Services.IAudioService
 	{
 
 		readonly string FFmpegFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/DeltaCORE/ffmpeg/";

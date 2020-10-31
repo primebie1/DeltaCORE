@@ -22,7 +22,7 @@ using Discord;
 
 namespace DeltaCORE
 {
-	public class DECTalkService : IDECTalkService
+	public class DECTalkService : DeltaPackage.Services.IDECTalkService
 	{
 
 		readonly string DECFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/DeltaCORE/DECTalk/";

@@ -11,6 +11,8 @@ using System.Text.Json.Serialization;
 using Discord.Commands;
 using Discord;
 using Discord.WebSocket;
+using DeltaPackage.Services;
+using DeltaPackage.Utilities;
 
 /*
            ____
@@ -29,7 +31,7 @@ using Discord.WebSocket;
  */
 namespace DeltaCORE
 {
-	public class DataService : IDataService
+	public class DataService : DeltaPackage.Services.IDataService
 	{
 		readonly string guildFolder;
 		readonly string userFolder;
@@ -90,11 +92,7 @@ namespace DeltaCORE
 		{
 			File.Delete(path);
 		}
-	}
-	public class GuildData
-	{
-		public string Name { get; set; }
-		public List<ulong> Roles { get; set; } = new List<ulong>();
+
 
 	}
 }

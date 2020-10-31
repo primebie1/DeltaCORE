@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v3.1": {
-      "DeltaPackage/1.0.0": {
+      "DeltaPackage/1.0.1": {
         "type": "package",
         "dependencies": {
           "Discord.Net": "2.2.0"
@@ -1904,14 +1904,14 @@
     }
   },
   "libraries": {
-    "DeltaPackage/1.0.0": {
-      "sha512": "ANgW/B+9eX+FxQxT03MYRRDgvUGo5h8e9buvWdC0N6l27GCM0xAA0Fhxqrd4kNCYTOdQPalWH/ibIoLJVNyCXg==",
+    "DeltaPackage/1.0.1": {
+      "sha512": "csPzayYkVc/fGsfDXLIc87EB0QthDQnRKE61DYxCmNyzR+po4F64rp68WeCRiSM/+VUXgE2vQNWqrj5XeSiHXg==",
       "type": "package",
-      "path": "deltapackage/1.0.0",
+      "path": "deltapackage/1.0.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "deltapackage.1.0.0.nupkg.sha512",
+        "deltapackage.1.0.1.nupkg.sha512",
         "deltapackage.nuspec",
         "lib/netstandard2.0/DeltaPackage.dll"
       ]
@@ -6066,7 +6066,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "DeltaPackage >= 1.0.0",
+      "DeltaPackage >= 1.0.1",
       "Discord.Net >= 2.2.0",
       "Humanizer >= 2.8.26",
       "Microsoft.Extensions.DependencyInjection >= 3.1.9",
@@ -6117,7 +6117,7 @@
         "dependencies": {
           "DeltaPackage": {
             "target": "Package",
-            "version": "[1.0.0, )"
+            "version": "[1.0.1, )"
           },
           "Discord.Net": {
             "target": "Package",
