@@ -25,7 +25,7 @@ using System.Threading.Tasks;
 
 namespace DeltaCORE.Modules
 {
-	class BaseModule : ModuleBase<SocketCommandContext>
+	public class BaseModule : ModuleBase<SocketCommandContext>
 	{
 		[Command("BotInfo")]
 		[Summary("Displays info on bot")]

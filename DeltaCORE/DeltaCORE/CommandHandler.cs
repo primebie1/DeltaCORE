@@ -47,6 +47,11 @@ namespace DeltaCORE
 		public async Task InitCommands()
 		{
 			await _commands.AddModulesAsync(Assembly.GetEntryAssembly(), _services);
+			foreach (Assembly asm in PluginManager.PluginList)
+			{
+				await _commands.AddModulesAsync(asm, _services);
+
+			}
 
 			_client.MessageReceived += HandleCommandAsync;
 			_commands.CommandExecuted += Commands_CommandExecuted;
