@@ -5,6 +5,7 @@ using Discord.Commands;
 using Discord.WebSocket;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+
 /*
 		   ____
 		  /    \
@@ -20,6 +21,7 @@ using System.Threading.Tasks;
 /  /_______________\     \ DeltaCORE
 \________________________/ Utility Plugin
  */
+
 namespace DeltaUtility
 {
 	public class DeltaUtility : DeltaSocketModule
@@ -43,7 +45,6 @@ namespace DeltaUtility
 				userRoles.Add(usrRole.Id);
 			}
 
-
 			if (_dataserv.CheckFile(servID))
 			{
 				GuildData data;
@@ -52,12 +53,10 @@ namespace DeltaUtility
 				{
 					if (roleID == role.Id)
 					{
-
 						if (userRoles.Contains(role.Id))
 						{
 							await Context.Guild.GetUser(Context.User.Id).RemoveRoleAsync(role);
 							await ReplyAsync($"Removed {role.Name}!");
-
 						}
 						else
 						{
@@ -72,6 +71,5 @@ namespace DeltaUtility
 				await ReplyAsync("Error! No Server Configuration Detected! Please add a role to server configuration!");
 			}
 		}
-
 	}
 }

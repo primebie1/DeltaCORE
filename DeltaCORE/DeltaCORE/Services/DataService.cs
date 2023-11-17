@@ -1,17 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
-using System.Text;
 using System.IO;
 using System.Text.Json;
-using System.Runtime;
-using System.Runtime.InteropServices;
-using System.Text.Json.Serialization;
-using Discord.Commands;
-using Discord;
-using Discord.WebSocket;
-using DeltaPackage.Services;
 using DeltaPackage.Utilities;
 
 /*
@@ -50,18 +39,22 @@ namespace DeltaCORE
 				WriteIndented = true // write pretty json
 			};
 		}
+
 		public string GetMediaFolder()
 		{
 			return mediaFolder;
 		}
+
 		public bool CheckFile(string name)
 		{
 			return (File.Exists(guildFolder + name + ".json") || File.Exists(userFolder + name + ".json") || File.Exists(mediaFolder + name));
 		}
+
 		public void MakeGuildFile(string name)
 		{
 			File.Create(guildFolder + name + ".json").Close();
 		}
+
 		public void MakeUserFile(string name)
 		{
 			File.Create(userFolder + name + ".json").Close();
@@ -70,29 +63,25 @@ namespace DeltaCORE
 		//save given GuildData to "DeltaCORE\Guild\" in its JSON file
 		public void SaveGuildData(GuildData data)
 		{
-			//Console.WriteLine(data.name + " " + data.roles);
 			string jsonSavString = JsonSerializer.Serialize(data, options);
-			//Console.WriteLine(jsonSavString);
 			File.WriteAllText(guildFolder + data.Name + ".json", jsonSavString);
 		}
+
 		//load guild data from its JSON file in "DeltaCORE\Guild\"
 		public GuildData LoadGuildData(string name)
 		{
 			string jsonReadString = File.ReadAllText(guildFolder + name + ".json");
-
 			return JsonSerializer.Deserialize<GuildData>(jsonReadString);
-
 		}
 
 		public Stream LoadMediaData(string name)
 		{
 			return File.Open(mediaFolder + name, FileMode.Open);
 		}
+
 		public void DelFile(string path)
 		{
 			File.Delete(path);
 		}
-
-
 	}
 }

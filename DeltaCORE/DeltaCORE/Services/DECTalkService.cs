@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
-using System.Collections.Generic;
-using System.Text;
 using Discord;
+
 /*
 		   ____
 		  /    \
@@ -24,12 +23,10 @@ namespace DeltaCORE
 {
 	public class DECTalkService : DeltaPackage.Services.IDECTalkService
 	{
-
 		readonly string DECFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/DeltaCORE/DECTalk/";
 
 		public bool DECInstalled()
 		{
-
 			if (File.Exists($"{DECFolder}say.exe"))
 			{
 				return true;
@@ -40,15 +37,13 @@ namespace DeltaCORE
 				Program.Log(msg);
 				return false;
 			}
-
 		}
 
 		public string DECGenWav(string ID, string input)
 		{
 			LogMessage msg = new LogMessage(LogSeverity.Verbose, "DECTalkServ", "DECTalk Generating Speech for " + ID);
 			Program.Log(msg);
-			//Console.WriteLine($"{DECFolder}{ID}.wav");
-			//Console.WriteLine($"{DECFolder}say.exe");
+
 			using (Process DECProcess = new Process())
 			{
 				DECProcess.StartInfo.WorkingDirectory = DECFolder;
@@ -58,12 +53,9 @@ namespace DeltaCORE
 				DECProcess.StartInfo.CreateNoWindow = true;
 
 				DECProcess.Start();
-				//Console.WriteLine($"{DECProcess.StartInfo.FileName}{DECProcess.StartInfo.Arguments}");
 				DECProcess.WaitForExit();
 			}
 			return $"{DECFolder}{ID}.wav";
 		}
-
-
 	}
 }

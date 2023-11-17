@@ -2,10 +2,9 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.IO;
-using System.Collections.Generic;
-using System.Text;
 using Discord.Audio;
 using Discord;
+
 /*
 		   ____
 		  /    \
@@ -26,11 +25,7 @@ namespace DeltaCORE
 {
 	public class AudioService : DeltaPackage.Services.IAudioService
 	{
-
 		readonly string FFmpegFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/DeltaCORE/ffmpeg/";
-
-
-
 
 		private Process CreateStream(string path)
 		{
@@ -56,17 +51,13 @@ namespace DeltaCORE
 			}
 			finally
 			{
-
-
 				await discord.FlushAsync();
 				await output.DisposeAsync();
 				output.Close();
 				await client.SetSpeakingAsync(false);
-
 			}
-
-
 		}
+
 		public bool FFmpegInstalled()
 		{
 			if (File.Exists($"{FFmpegFolder}ffmpeg.exe"))
@@ -78,9 +69,7 @@ namespace DeltaCORE
 				LogMessage msg = new LogMessage(LogSeverity.Warning, "AudioServ", "FFmpeg not found!");
 				Program.Log(msg);
 				return false;
-
 			}
 		}
-
 	}
 }

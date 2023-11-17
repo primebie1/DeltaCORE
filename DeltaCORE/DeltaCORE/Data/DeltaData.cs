@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-/*
+﻿/*
 		   ____
 		  /    \
 		 /      \
@@ -14,8 +11,9 @@ using System.Text;
   /  /           \     \
  /  /             \     \
 /  /_______________\     \ DeltaCORE
-\________________________/ Data Storage Module
+\________________________/ Core Instance Data
  */
+
 namespace DeltaCORE
 {
 	public class DeltaData
@@ -23,5 +21,4 @@ namespace DeltaCORE
 		public string Token { get; set; }
 		public char Prefix { get; set; }
 	}
-
 }

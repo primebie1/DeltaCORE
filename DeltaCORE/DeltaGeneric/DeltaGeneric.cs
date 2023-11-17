@@ -3,6 +3,7 @@ using Discord.Commands;
 using Discord.WebSocket;
 using System;
 using System.Threading.Tasks;
+
 /*
 		   ____
 		  /    \
@@ -18,6 +19,7 @@ using System.Threading.Tasks;
 /  /_______________\     \ DeltaCORE
 \________________________/ Generic Plugin
  */
+
 namespace DeltaGeneric
 {
 	public class DeltaGeneric : DeltaSocketModule
@@ -28,37 +30,19 @@ namespace DeltaGeneric
 		public Task SayAsync([Remainder][Summary("The text to echo")] string echo)
 		=> ReplyAsync(echo);
 
-		/*
-        [Command("Roll")]
-        [Summary("Rolls dice")]
-        public async Task RollAsync([Remainder] [Summary("Dice to roll")] string dice)
-        {
-            
-            int die = Convert.ToInt32(dice);
-            Random r = new Random();
-            int result = r.Next(1,die+1);
-            string outpt = Convert.ToString(result);
-            await Context.Channel.SendMessageAsync(outpt);
-            
-        }
-        */
-
 		[Command("Roll")]
 		[Summary("Rolls dice")]
 		public async Task RollAsync([Summary("Dice to roll")] int dice = 6, int dicenum = 1)
 		{
 			int die = Convert.ToInt32(dice);
-			//Console.WriteLine(die);
 			int diecount = Convert.ToInt32(dicenum);
-			//Console.WriteLine(dicenum);
 			Random r = new Random();
 			int[] result = new int[diecount];
-			//Console.WriteLine(result[0]);
 			for (int i = 0; i < diecount; i++)
 			{
-				//Console.WriteLine(i);
 				result[i] = 0;
 			}
+
 			string outpt = "";
 			int tot = 0;
 			for (int i = 0; i < diecount; i++)
@@ -67,12 +51,9 @@ namespace DeltaGeneric
 				outpt += Convert.ToString(result[i]) + " ";
 				tot += result[i];
 			}
+
 			outpt += " Totaling " + Convert.ToString(tot);
-			//= r.Next(1, die);
-
-			//string outpt = Convert.ToString(result);
 			await Context.Channel.SendMessageAsync(outpt);
-
 		}
 
 		[Command("s")]
@@ -126,22 +107,9 @@ namespace DeltaGeneric
 					i = length + 1;
 				}
 			}
-			/*
-            switch (result)
-            {
-                case 0:
-                    res = choice1;
-                    break;
-                case 1:
-                    res = choice2;
-                    break;
-                default:
-                    res = "shit done fucked mate";
-                    break;
-            }
-            */
 			await Context.Channel.SendMessageAsync($"I Choose {res}!");
 		}
+
 		[Command("Boop")]
 		[Summary("Boop!")]
 		public async Task BoopAsync()
@@ -156,9 +124,7 @@ namespace DeltaGeneric
 			var guild = Context.Guild;
 			var id = Context.User.Id;
 			var defuser = guild.GetUser(id);
-
 			var userout = userin ?? defuser;
-
 			await ReplyAsync($"*Hugs {userout.Nickname}!*");
 		}
 
@@ -180,7 +146,6 @@ namespace DeltaGeneric
 			};
 			await Context.Channel.SendMessageAsync(res);
 		}
-
 	}
 }
 

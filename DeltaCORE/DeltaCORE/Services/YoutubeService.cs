@@ -1,14 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.IO;
 using VideoLibrary;
+
+/*
+		   ____
+		  /    \
+		 /      \
+		/  _     \
+	   /  / \     \
+	  /  /   \     \
+	 /  /     \     \
+	/  /       \     \
+   /  /         \     \
+  /  /           \     \
+ /  /             \     \
+/  /_______________\     \ DeltaCORE
+\________________________/ Youtube Downloader Service
+ */
 
 namespace DeltaCORE
 {
 	public class YoutubeService : DeltaPackage.Services.IYoutubeService
 	{
-
 		readonly string MediaFolder = $@"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\DeltaCORE\Media\";
 		YouTube youTube = YouTube.Default;
 		public string YTDownload(string url)

@@ -31,7 +31,6 @@ namespace DeltaDebug
 		public async Task ServInfoAsync()
 		{
 			SocketGuild guild = Context.Guild;
-
 			await ReplyAsync($"```Name: {guild.Name}\nID: {guild.Id}\nOwner: {guild.Owner.Username}\nUser Count: {guild.MemberCount}```");
 		}
 
@@ -42,9 +41,7 @@ namespace DeltaDebug
 			var guild = Context.Guild;
 			var id = Context.User.Id;
 			var defuser = guild.GetUser(id);
-
 			var userout = userin ?? defuser;
-
 			await ReplyAsync($"```Name: {userout.Username}  \nGuild Nickname: {userout.Nickname}\nUser ID: {userout.Id}\nBot?: {userout.IsBot}\nStatus: {userout.Status}\nJoined At: {userout.JoinedAt}```");
 		}
 
@@ -56,7 +53,5 @@ namespace DeltaDebug
 			foreach (SocketGuildUser user in role.Members) { outlist += (user.Nickname + " (" + user.Username + "#" + user.Discriminator + ")" + "\n"); }
 			await ReplyAsync($"Users with Role {role.Name} \n ```{outlist}```");
 		}
-
-
 	}
 }

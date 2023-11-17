@@ -25,6 +25,7 @@ namespace DeltaCORE
 	{
 		public static List<Assembly> PluginList = new List<Assembly>();
 		static readonly string PluginDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/DeltaCORE/Plugins/";
+
 		public static void LoadPlugins()
 		{
 			Console.WriteLine("Loading Plugins! Please Wait...");
@@ -32,7 +33,6 @@ namespace DeltaCORE
 			{
 				PluginList.Add(Assembly.LoadFrom(f));
 			}
-
 			Console.WriteLine("Plugins Loaded!");
 		}
 
@@ -41,7 +41,7 @@ namespace DeltaCORE
 			Console.WriteLine("Current Plugins:");
 			foreach(Assembly a in PluginList)
 			{
-				Console.WriteLine(a.GetName().Name + " V" + a.GetName().Version);
+				Console.WriteLine(a.GetName().Name + " V" + a.GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion);
 			}
 		}
 
@@ -50,7 +50,7 @@ namespace DeltaCORE
 			StringBuilder list = new StringBuilder();
 			foreach(Assembly a in PluginList)
 			{
-				list.Append(a.GetName().Name).Append(" V").Append(a.GetName().Version).Append("\n");
+				list.Append(a.GetName().Name).Append(" V").Append(a.GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion).Append("\n");
 			}
 			return list.ToString();
 		}

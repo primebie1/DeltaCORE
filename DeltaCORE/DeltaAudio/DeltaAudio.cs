@@ -3,6 +3,7 @@ using DeltaPackage.Services;
 using Discord;
 using Discord.Commands;
 using System.Threading.Tasks;
+
 /*
 		   ____
 		  /    \
@@ -18,15 +19,16 @@ using System.Threading.Tasks;
 /  /_______________\     \ DeltaCORE
 \________________________/ Audio Plugin
  */
+
 namespace DeltaAudio
 {
 	public class DeltaAudio : DeltaSocketModule
 	{
-
 		private readonly IAudioService _audserv;
 		private readonly IDECTalkService _DECserv;
 		private readonly IDataService _dataserv;
 		private readonly IYoutubeService _ytserv;
+
 		public DeltaAudio(IAudioService audioService, IDECTalkService dECTalkService, IDataService dataService, IYoutubeService YTServ)
 		{
 			_audserv = audioService;
@@ -34,7 +36,6 @@ namespace DeltaAudio
 			_dataserv = dataService;
 			_ytserv = YTServ;
 		}
-
 
 		[Command("Join", RunMode = RunMode.Async)]
 		[Summary("Joins current voice channel")]
@@ -46,7 +47,6 @@ namespace DeltaAudio
 				await Context.Channel.SendMessageAsync("User must be in a voice channel, or a voice channel must be passed as an argument");
 				return;
 			}
-
 			await channel.ConnectAsync();
 		}
 
@@ -68,7 +68,6 @@ namespace DeltaAudio
 					if (Context.Guild.AudioClient != null)
 					{
 						string wavLoc = _DECserv.DECGenWav(Context.Guild.Id.ToString(), inpt);
-
 						await _audserv.SendAsync(Context.Guild.AudioClient, wavLoc);
 
 						//_dataserv.DelFile(wavLoc);
@@ -107,7 +106,6 @@ namespace DeltaAudio
 		//	else
 		//	{
 		//		await ReplyAsync(@"FFmpeg not present in DeltaCORE\ffmpeg\");
-
 		//	}
 		//}
 
@@ -120,7 +118,6 @@ namespace DeltaAudio
 				if (Context.Guild.AudioClient != null)
 				{
 					string file = _ytserv.YTDownload(url);
-
 					await _audserv.SendAsync(Context.Guild.AudioClient, file);
 				}
 				else
@@ -131,10 +128,8 @@ namespace DeltaAudio
 			else
 			{
 				await ReplyAsync(@"FFmpeg not present in DeltaCORE\ffmpeg\");
-
 			}
 		}
-
 	}
 }
 

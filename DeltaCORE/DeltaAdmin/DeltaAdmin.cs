@@ -41,6 +41,7 @@ namespace DeltaAdmin
 		{
 			await userin.KickAsync();
 		}
+
 		[Command("Ban")]
 		[Summary("Bans a User (User, Reason(in quotations), (OPTIONAL) Days of Messages to Prune (default = 0)")]
 		public async Task BanAsync(SocketGuildUser user, string reason, int prune = 0)
@@ -71,8 +72,8 @@ namespace DeltaAdmin
 				await ReplyAsync($"Set Role {role.Name} to self-apply!");
 			}
 			_dataserv.SaveGuildData(data);
-
 		}
+
 		[Command("RoleUnset")]
 		[Summary("Make Role User Settable")]
 		public async Task RoleUnSetAsync(params SocketRole[] roles)
@@ -98,17 +99,14 @@ namespace DeltaAdmin
 				}
 			}
 			_dataserv.SaveGuildData(data);
-
 		}
 
 		[Command("RoleAdd")]
 		[Summary("Create a new role")]
 		public async Task RoleAddAsync(string name)
 		{
-			await Context.Guild.CreateRoleAsync(name, null, null, false, null);
+			await Context.Guild.CreateRoleAsync(name, null, null, false, false, null);
 			await ReplyAsync($"Role {name} Created!");
-
 		}
-
 	}
 }
