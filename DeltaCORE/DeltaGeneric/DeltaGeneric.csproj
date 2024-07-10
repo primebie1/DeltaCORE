@@ -1,13 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-	  <Version>1.0.4</Version>
+	  <TargetFramework>net8.0</TargetFramework>
+	  <Version>1.0.6</Version>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="DeltaPackage" Version="1.0.1" />
-    <PackageReference Include="Discord.Net" Version="3.10.0" />
+	<ItemGroup>
+    <PackageReference Include="DeltaPackage" Version="1.0.3" />
+    <PackageReference Include="Discord.Net" Version="3.15.2" />
   </ItemGroup>
 
 </Project>

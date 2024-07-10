@@ -41,7 +41,7 @@ namespace DeltaCORE
 			Console.WriteLine("Current Plugins:");
 			foreach(Assembly a in PluginList)
 			{
-				Console.WriteLine(a.GetName().Name + " V" + a.GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion);
+				Console.WriteLine(a.GetName().Name + " V" + a.GetName().Version);
 			}
 		}
 
@@ -50,7 +50,7 @@ namespace DeltaCORE
 			StringBuilder list = new StringBuilder();
 			foreach(Assembly a in PluginList)
 			{
-				list.Append(a.GetName().Name).Append(" V").Append(a.GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion).Append("\n");
+				list.Append(a.GetName().Name).Append(" V").Append(a.GetName().Version).Append("\n");
 			}
 			return list.ToString();
 		}

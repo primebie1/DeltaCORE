@@ -5,7 +5,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Text;
 using System.Threading.Tasks;
+using Discord.Interactions;
 
 /*
 		   ____
@@ -25,28 +27,33 @@ using System.Threading.Tasks;
 
 namespace DeltaCORE.Modules
 {
-	public class BaseModule : ModuleBase<SocketCommandContext>
+	public class BaseModule : InteractionModuleBase<SocketInteractionContext>
 	{
-		[Command("BotInfo")]
-		[Summary("Displays info on bot")]
+		[SlashCommand("botinfo", "Displays info on bot")]
 		public async Task BotInfoAsync()
 		{
-			string deltaLogo = @"           ____
-          /    \
-         /      \
-        /  _     \
-       /  / \     \
-      /  /   \     \
-     /  /     \     \
-    /  /       \     \
-   /  /         \     \
-  /  /           \     \
- /  /             \     \
-/  /_______________\     \
-\________________________/";
-			var vernum = Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion;
+			var vernum = Assembly.GetEntryAssembly().GetName().Version;
 			var app = await Context.Client.GetApplicationInfoAsync();
-			await ReplyAsync($"```\n{deltaLogo} DeltaCORE\n\n/========General Info========\\ \nVersion {vernum}\nOwned by {app.Owner}\nBuilt With Discord.NET version {DiscordConfig.Version}\nRunning on {RuntimeInformation.FrameworkDescription} {RuntimeInformation.ProcessArchitecture} On {RuntimeInformation.OSDescription} {RuntimeInformation.OSArchitecture}\n\n/========Stats========\\ \nHeap Size: {GetHeapSize()}MiB\nGuilds Connected: {Context.Client.Guilds.Count}\nChannels: {Context.Client.Guilds.Sum(g => g.Channels.Count)}\nUsers: {Context.Client.Guilds.Sum(g => g.Users.Count)}\nUptime: {GetUptime()}\nPlugin Number: {PluginManager.PluginList.Count()}\nPlugins Installed:\n{PluginManager.GetPluginList()}\n```");
+
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("```");
+            sb.AppendLine($"           ____            /========General Info========\\ ");
+			sb.AppendLine($"          /    \\           Version {vernum}");
+            sb.AppendLine($"         /      \\          Owned by {app.Owner}");
+            sb.AppendLine($"        /  _     \\         Built With Discord.NET version {DiscordConfig.Version}");
+            sb.AppendLine($"       /  / \\     \\        Running on {RuntimeInformation.FrameworkDescription} {RuntimeInformation.ProcessArchitecture} On {RuntimeInformation.OSDescription} {RuntimeInformation.OSArchitecture}");
+            sb.AppendLine($"      /  /   \\     \\");
+            sb.AppendLine($"     /  /     \\     \\       /========Stats========\\ ");
+            sb.AppendLine($"    /  /       \\     \\      Heap Size: {GetHeapSize()}MiB");
+            sb.AppendLine($"   /  /         \\     \\     Guilds Connected: {Context.Client.Guilds.Count}");
+            sb.AppendLine($"  /  /           \\     \\    Channels: {Context.Client.Guilds.Sum(g => g.Channels.Count)}");
+            sb.AppendLine($" /  /             \\     \\   Users: {Context.Client.Guilds.Sum(g => g.Users.Count)}");
+            sb.AppendLine($"/  /_______________\\     \\  Uptime: {GetUptime()}");
+            sb.AppendLine($"\\________________________/  Plugin Number: {PluginManager.PluginList.Count()}");
+            sb.AppendLine($"Plugins Installed:");
+            sb.AppendLine($"{PluginManager.GetPluginList()}");
+            sb.Append($"```");
+			await RespondAsync(sb.ToString());
 		}
 
 		private static string GetHeapSize() => Math.Round(GC.GetTotalMemory(true) / (1024.0 * 1024.0), 2).ToString();

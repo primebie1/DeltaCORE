@@ -4,6 +4,7 @@ using Discord.WebSocket;
 using System;
 using System.Reflection;
 using System.Threading.Tasks;
+using Discord.Interactions;
 
 /*
 		   ____
@@ -30,13 +31,16 @@ namespace DeltaCORE
 
         private readonly DiscordSocketClient _client;
         private readonly CommandService _commands;
+        private readonly InteractionService _interaction;
         private readonly DeltaData config;
         private CommandHandler commandHandler;
+        private SlashCommandSystem _slashCommandSystem;
 
         public async Task MainAsync()
         {
             commandHandler = new CommandHandler(_client, _commands, config);
-            await commandHandler.InitCommands();
+            _slashCommandSystem = new SlashCommandSystem(_client, _interaction, config);
+            await _slashCommandSystem.InitInteractions();
             await _client.LoginAsync(TokenType.Bot, config.Token);
             await _client.StartAsync();
 
@@ -54,7 +58,7 @@ namespace DeltaCORE
             //configure SocketClient
             _client = new DiscordSocketClient(new DiscordSocketConfig
             {
-                LogLevel = LogSeverity.Info,
+                LogLevel = LogSeverity.Debug,
                 GatewayIntents = GatewayIntents.AllUnprivileged | GatewayIntents.GuildMembers | GatewayIntents.GuildPresences
                 //MessageCacheSize = 50,
 
@@ -68,8 +72,14 @@ namespace DeltaCORE
                 CaseSensitiveCommands = false,
             });
 
+            _interaction = new InteractionService(_client, new InteractionServiceConfig()
+            {
+                LogLevel = LogSeverity.Debug
+            });
+
             _client.Log += Log;
             _commands.Log += Log;
+            _interaction.Log += Log;
         }
 
         public static Task Log(LogMessage message)

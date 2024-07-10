@@ -69,6 +69,7 @@ namespace DeltaCORE
 			_commands.CommandExecuted += Commands_CommandExecuted;
 		}
 
+
 		private Task Commands_CommandExecuted(Optional<CommandInfo> arg1, ICommandContext arg2, IResult arg3)
 		{
 			if (arg3.IsSuccess)

@@ -1,8 +1,8 @@
 ﻿using DeltaPackage;
-using Discord.Commands;
 using Discord.WebSocket;
 using System;
 using System.Threading.Tasks;
+using Discord.Interactions;
 
 /*
 		   ____
@@ -22,17 +22,15 @@ using System.Threading.Tasks;
 
 namespace DeltaGeneric
 {
-	public class DeltaGeneric : DeltaSocketModule
+	public class DeltaGeneric : DeltaSlashModule
 	{
 
-		[Command("say")]
-		[Summary("Echoes a message.")]
-		public Task SayAsync([Remainder][Summary("The text to echo")] string echo)
-		=> ReplyAsync(echo);
+		[SlashCommand("say", "Echoes a message.")]
+		public Task SayAsync(string echo)
+		=> RespondAsync(echo);
 
-		[Command("Roll")]
-		[Summary("Rolls dice")]
-		public async Task RollAsync([Summary("Dice to roll")] int dice = 6, int dicenum = 1)
+		[SlashCommand("roll", "Rolls dice")]
+		public async Task RollAsync(int dice = 6, int dicenum = 1)
 		{
 			int die = Convert.ToInt32(dice);
 			int diecount = Convert.ToInt32(dicenum);
@@ -53,11 +51,10 @@ namespace DeltaGeneric
 			}
 
 			outpt += " Totaling " + Convert.ToString(tot);
-			await Context.Channel.SendMessageAsync(outpt);
+			await RespondAsync(outpt);
 		}
 
-		[Command("s")]
-		[Summary("Squek")]
+		[SlashCommand("s", "Squek")]
 		public async Task SquekAsync()
 		{
 			Random r = new Random();
@@ -73,63 +70,44 @@ namespace DeltaGeneric
 				6 => "smoll squek",
 				_ => "Error! Invalid switch case!",
 			};
-			await Context.Channel.SendMessageAsync(res);
+			await RespondAsync(res);
 		}
 
-		[Command("Choose")]
-		[Summary("Choose between two options")]
-		public async Task ChooseAsync([Summary("Choices")] string choice1, string choice2)
-		{
-			Random r = new Random();
-			int result = r.Next(0, 2);
-			var res = result switch
-			{
-				0 => choice1,
-				1 => choice2,
-				_ => "Error! Invalid switch case!",
-			};
-			await Context.Channel.SendMessageAsync($"I Choose {res}!");
-		}
+		//[SlashCommand("Choose","Choose between multiple options")]
+		//public async Task ChooseAsync([Summary("Choices")] string[] choices)
+		//{
+		//	int length = choices.Length;
+		//	Random r = new Random();
+		//	int result = r.Next(0, length + 1);
+		//	string res = "Error! Invalid switch case!";
+		//	for (int i = 0; i <= length; i++)
+		//	{
+		//		if (result == i)
+		//		{
+		//			res = choices[i];
+		//			i = length + 1;
+		//		}
+		//	}
+		//	await RespondAsync($"I Choose {res}!");
+		//}
 
-		[Command("Choose")]
-		[Summary("Choose between multiple options")]
-		public async Task ChooseAsync([Summary("Choices")] params string[] choices)
-		{
-			int length = choices.Length;
-			Random r = new Random();
-			int result = r.Next(0, length + 1);
-			string res = "Error! Invalid switch case!";
-			for (int i = 0; i <= length; i++)
-			{
-				if (result == i)
-				{
-					res = choices[i];
-					i = length + 1;
-				}
-			}
-			await Context.Channel.SendMessageAsync($"I Choose {res}!");
-		}
-
-		[Command("Boop")]
-		[Summary("Boop!")]
+		[SlashCommand("boop", "Boop!")]
 		public async Task BoopAsync()
 		{
-			await ReplyAsync("Boop!");
+			await RespondAsync("Boop!");
 		}
 
-		[Command("Hug")]
-		[Summary("Hug!")]
+		[SlashCommand("hug", "Hug!")]
 		public async Task HugAsync(SocketGuildUser userin = null)
 		{
 			var guild = Context.Guild;
 			var id = Context.User.Id;
 			var defuser = guild.GetUser(id);
 			var userout = userin ?? defuser;
-			await ReplyAsync($"*Hugs {userout.Nickname}!*");
+			await RespondAsync($"*Hugs {userout.Nickname}!*");
 		}
 
-		[Command("OwO")]
-		[Summary("OwO Whats This?")]
+		[SlashCommand("owo", "OwO Whats This?")]
 		public async Task OwOAsync()
 		{
 			Random r = new Random();
@@ -144,7 +122,7 @@ namespace DeltaGeneric
 				5 => ":3",
 				_ => "Error! Invalid switch case!",
 			};
-			await Context.Channel.SendMessageAsync(res);
+			await RespondAsync(res);
 		}
 	}
 }
